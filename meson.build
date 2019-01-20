@@ -1,8 +1,19 @@
 project('shadow', 'cpp',
   version : '1.0.0',
   license : 'MIT',
-  default_options : ['cpp_std=c++14'])
+  default_options : ['cpp_std=c++17'])
 
-boost_dep = dependency('boost')
+boost_dep = dependency('boost', modules: ['system'])
 
-exe = executable('shadow', 'src/user.cpp', 'src/shadow.cpp', 'src/main.cpp', dependencies : boost_dep)
+inc = include_directories('include')
+
+subdir('include')
+subdir('src')
+subdir('test')
+
+pkg_mod = import('pkgconfig')
+pkg_mod.generate(libraries : shadow,
+                 version : '1.0',
+                 name : 'libshadow',
+                 filebase : 'shadow',
+                 description : 'Library for /etc/shadow information')
