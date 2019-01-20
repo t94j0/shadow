@@ -1,0 +1,5 @@
+option('use_system_tzdb', type: 'boolean', value: false,
+       description: 'Use the operating system\'s timezone database')
+
+option('use_tzdb_in_dot', type: 'boolean', value: false,
+       description: 'Save the timezone database init the current folder')

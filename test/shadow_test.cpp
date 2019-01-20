@@ -8,6 +8,7 @@ const std::string passwd =
 TEST(ShadowTest, Constructor) {
   Shadow users(passwd);
   auto target = users.get_user("hari");
+  std::cout << target << std::endl;
   ASSERT_EQ(target.get_username(), "hari");
 }
 
@@ -15,7 +16,7 @@ TEST(ShadowTest, Iterator) {
   Shadow users(passwd);
   bool has_root, has_hari;
   for (auto &user_ctr : users) {
-    auto [username, user] = user_ctr;
+    auto [_, user] = user_ctr;
     if (user.get_username() == "root") {
       has_root = true;
     } else if (user.get_username() == "hari") {

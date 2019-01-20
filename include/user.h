@@ -1,18 +1,15 @@
 #pragma once
 
-#include <boost/algorithm/string.hpp>
-#include <boost/date_time/gregorian/gregorian.hpp>
+#include <date/date.h>
 #include <string>
-
-namespace bg = boost::gregorian;
 
 class User {
 public:
-  User();
+  User() = default;
   User(std::string line);
 
-  std::string get_username();
-  bg::date get_last_reset();
+  const std::string get_username();
+  const date::year_month_day get_last_reset();
   friend std::ostream &operator<<(std::ostream &out, const User &u);
 
   bool is_locked();
@@ -20,5 +17,5 @@ public:
 private:
   std::string username;
   std::string password;
-  bg::date last_reset;
+  date::year_month_day last_reset;
 };

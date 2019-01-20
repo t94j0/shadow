@@ -1,26 +1,27 @@
 #pragma once
 
 #include "user.h"
-#include <boost/filesystem.hpp>
-#include <boost/iostreams/stream.hpp>
+#include <filesystem>
 #include <fstream>
+#include <map>
 #include <sstream>
 #include <string>
 
-namespace fs = boost::filesystem;
-namespace io = boost::iostreams;
+namespace fs = std::filesystem;
+typedef std::map<std::string, User>::const_iterator usermap_citer;
 
 class Shadow {
 public:
   Shadow();
+  Shadow(std::istream &&content);
+  Shadow(const fs::path file_name);
   Shadow(const std::string content);
 
   const User get_user(const std::string target_user);
 
-  std::map<std::string, User>::const_iterator begin() const noexcept;
-  std::map<std::string, User>::const_iterator end() const noexcept;
+  usermap_citer begin() const noexcept;
+  usermap_citer end() const noexcept;
 
 private:
-  Shadow(const fs::path file_name);
   std::map<std::string, User> users;
 };
