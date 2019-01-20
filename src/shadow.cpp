@@ -1,9 +1,18 @@
 #include "shadow.h"
 
-Shadow::Shadow() : Shadow("/etc/shadow") {}
+Shadow::Shadow() : Shadow(fs::path("/etc/shadow")) {}
 
-Shadow::Shadow(const std::string file_name) {
-  std::ifstream shadow(file_name);
+Shadow::Shadow(const fs::path file_name) {
+  fs::ifstream shadow(file_name);
+  std::string line;
+  while (std::getline(shadow, line)) {
+    User tmp(line);
+    users[tmp.get_username()] = tmp;
+  }
+}
+
+Shadow::Shadow(const std::string content) {
+  std::istringstream shadow(content);
   std::string line;
   while (std::getline(shadow, line)) {
     User tmp(line);
