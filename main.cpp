@@ -1,6 +1,10 @@
 #include "shadow.h"
 
 int main() {
-  Shadow s;
-  auto user = s.get_user("hari");
+  Shadow users;
+  for (const auto &user_pair : users) {
+    auto [username, user] = user_pair;
+    if (!user.is_locked())
+      std::cout << user << std::endl;
+  }
 }
