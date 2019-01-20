@@ -11,6 +11,15 @@ Shadow::Shadow(const fs::path file_name) {
   }
 }
 
+Shadow::Shadow(const std::string content) {
+  std::istringstream shadow(content);
+  std::string line;
+  while (std::getline(shadow, line)) {
+    User tmp(line);
+    users[tmp.get_username()] = tmp;
+  }
+}
+
 const User Shadow::get_user(const std::string target_user) {
   return users[target_user];
 }

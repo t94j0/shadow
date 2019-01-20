@@ -2,15 +2,18 @@
 
 #include "user.h"
 #include <boost/filesystem.hpp>
+#include <boost/iostreams/stream.hpp>
 #include <fstream>
 #include <sstream>
 #include <string>
 
 namespace fs = boost::filesystem;
+namespace io = boost::iostreams;
 
 class Shadow {
 public:
   Shadow();
+  Shadow(const std::string content);
 
   const User get_user(const std::string target_user);
 

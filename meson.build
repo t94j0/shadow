@@ -3,7 +3,8 @@ project('shadow', 'cpp',
   license : 'MIT',
   default_options : ['cpp_std=c++17'])
 
-boost_dep = dependency('boost', modules: ['system'])
+cxx = meson.get_compiler('cpp')
+boost_dep = dependency('boost', modules: ['system', 'filesystem'])
 
 inc = include_directories('include')
 
