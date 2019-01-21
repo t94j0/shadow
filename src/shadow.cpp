@@ -15,7 +15,7 @@ Shadow::Shadow(const fs::path file_name) : Shadow(std::ifstream(file_name)) {}
 Shadow::Shadow(const std::string content)
     : Shadow(std::istringstream(content)) {}
 
-const User Shadow::get_user(const std::string target_user) {
+const User Shadow::get_user(const std::string target_user) const {
   return users.at(target_user);
 }
 

@@ -14,8 +14,8 @@ User::User(std::string line) {
 
   last_reset = sys_days(1970_y / January / 1) + days{days_since};
 }
-const std::string User::get_username() { return username; }
-const date::year_month_day User::get_last_reset() { return last_reset; }
+const std::string User::get_username() const { return username; }
+const date::year_month_day User::get_last_reset() const { return last_reset; }
 std::ostream &operator<<(std::ostream &out, const User &u) {
   out << "Username: " << u.username << "\n";
   out << "Password: " << u.password << "\n";
@@ -23,6 +23,6 @@ std::ostream &operator<<(std::ostream &out, const User &u) {
   return out;
 }
 
-bool User::is_locked() {
+const bool User::is_locked() const {
   return password == "!!" || password == "!" || password == "x";
 }
