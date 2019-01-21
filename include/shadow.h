@@ -17,7 +17,7 @@ public:
   Shadow(const fs::path file_name);
   Shadow(const std::string content);
 
-  const User get_user(const std::string target_user);
+  const User get_user(const std::string target_user) const;
 
   usermap_citer begin() const noexcept;
   usermap_citer end() const noexcept;

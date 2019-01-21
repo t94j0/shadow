@@ -8,11 +8,11 @@ public:
   User() = default;
   User(std::string line);
 
-  const std::string get_username();
-  const date::year_month_day get_last_reset();
+  const std::string get_username() const;
+  const date::year_month_day get_last_reset() const;
   friend std::ostream &operator<<(std::ostream &out, const User &u);
 
-  bool is_locked();
+  const bool is_locked() const;
 
 private:
   std::string username;

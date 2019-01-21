@@ -16,7 +16,7 @@ Shadow::Shadow(const std::string content)
     : Shadow(std::istringstream(content)) {}
 
 const User Shadow::get_user(const std::string target_user) {
-  return users[target_user];
+  return users.at(target_user);
 }
 
 usermap_citer Shadow::begin() const noexcept { return users.cbegin(); }
